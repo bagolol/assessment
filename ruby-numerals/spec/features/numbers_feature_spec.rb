@@ -4,7 +4,7 @@ feature 'numbers' do
   context 'the index page shows a form' do
     scenario 'should display a prompt to submit a number' do
       visit '/numbers'
-      expect(page).to have_link 'submit number'
+      expect(page).to have_button 'submit number'
     end
   end
 
