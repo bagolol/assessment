@@ -11,9 +11,12 @@ feature 'numbers' do
   context 'submitting numbers' do
     scenario 'the user submits a number, then the page shows the word for it' do
       visit '/numbers'
-      fill_in 'Number', with: 1
+      number = 1
+      fill_in 'Number', with: number
       click_button 'submit number'
-      expect(page).to have_content 'one'
+
+      expect(current_path).to eq '/numbers/'+ number.to_s
+      expect(page).to have_content('')
     end
   end
 end
