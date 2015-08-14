@@ -12,6 +12,11 @@ class Number
 
   TEENS = %w(eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen)
 
+  TENS = %w(ten twenty thirty forty fifty
+    sixty seventy ninety)
+
+
+
   validates :number, :presence => true
 
 
@@ -26,16 +31,23 @@ class Number
     error = 'please submit a positive number'
     if is_valid?
       if number < 10
-        word_index = number - 1
-        ONES[word_index]
+        ONES[word_index(number)]
       elsif
         number > 10 && number < 20
-        word_index = (number % 10) - 1
-        TEENS[word_index]
+        TEENS[word_index(number)]
+      elsif
+        number > 19 && number < 100
+        first = number / 10
+        second = number % 10
+        TENS[first - 1] + '-' + ONES[second - 1]
       end
     else
       return error
     end
+  end
+
+  def word_index number
+    (number % 10) - 1
   end
 
   def is_valid?
