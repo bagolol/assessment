@@ -6,6 +6,8 @@ class Number
 
   attr_accessor :number
 
+  ONES = %w(one two three four five six seven eight nine)
+
   validates :number, :presence => true
 
 
@@ -14,6 +16,12 @@ class Number
       send("#{name}=", value)
     end
   end
+
+  def spell_number
+    word_index = self.number - 1;
+    ONES[word_index]
+  end
+
 
 
   def persisted?

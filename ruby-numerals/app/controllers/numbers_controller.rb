@@ -12,7 +12,8 @@ class NumbersController < ApplicationController
   def show
     value = params[:id].to_i
     info = { :number => value }
-    @number = Number.new info
-    @letters = params[:id]
+    number = Number.new info
+
+    @letters = number.spell_number
   end
 end
