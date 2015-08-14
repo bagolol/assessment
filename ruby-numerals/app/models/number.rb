@@ -6,16 +6,13 @@ class Number
 
   attr_accessor :number
 
-  chunks = []
 
   ONES = %w(one two three four five six seven eight nine)
 
   TEENS = %w(eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen)
 
   TENS = %w(ten twenty thirty forty fifty
-    sixty seventy ninety)
-
-
+    sixty seventy eighty ninety)
 
   validates :number, :presence => true
 
@@ -27,24 +24,32 @@ class Number
   end
 
   def spell_number
+    words = []
     self.number = number
     error = 'please submit a positive number'
     if is_valid?
       if number < 10
-        ONES[word_index(number)]
+        words << ONES[word_index(number)]
       elsif
         number > 10 && number < 20
-        TEENS[word_index(number)]
+        words << TEENS[word_index(number)]
       elsif
         number > 19 && number < 100
         first = number / 10
         second = number % 10
-        TENS[first - 1] + '-' + ONES[second - 1]
+        if second > 0
+          words << TENS[first - 1] + '-' + ONES[second - 1]
+        else
+          words << TENS[first - 1]
+        end
       end
     else
       return error
     end
+    words.join
   end
+
+
 
   def word_index number
     (number % 10) - 1

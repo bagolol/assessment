@@ -37,9 +37,18 @@ feature 'numbers' do
       expect(page).to have_content('nineteen')
     end
 
-    scenario 'user submits a number from 20 to 100' do
+    scenario 'user submits a number from 20 to 99' do
       submit_number(55)
       expect(page).to have_content('fifty-five')
+    end
+
+    scenario 'users submits tens(30)' do
+      submit_number(30)
+      expect(page).to have_content('Your number is "thirty"')
+    end
+    scenario 'users submits tens(90)' do
+      submit_number(90)
+      expect(page).to have_content('Your number is "ninety"')
     end
   end
 end
