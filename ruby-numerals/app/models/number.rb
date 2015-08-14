@@ -10,7 +10,7 @@ class Number
 
   ONES = %w(one two three four five six seven eight nine)
 
-  TEENS = %w(eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen)
+  TEENS = %w(eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen)
 
   validates :number, :presence => true
 
