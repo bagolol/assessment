@@ -18,9 +18,19 @@ class Number
   end
 
   def spell_number
-    word_index = self.number - 1;
-    ONES[word_index]
+    error = 'please submit a positive number'
+    if is_valid?
+      word_index = self.number - 1;
+      ONES[word_index]
+    else
+      return error
+    end
   end
+
+  def is_valid?
+    self.number >= 0
+  end
+
 
 
 

@@ -12,7 +12,7 @@ feature 'numbers' do
   end
 
   context 'submitting numbers' do
-    scenario 'the user submits 1, then the page shows "one"' do
+    scenario 'user submits 1, then the page shows "one"' do
       visit '/numbers'
       digit = 1
       fill_in 'Number', with: digit
@@ -21,10 +21,15 @@ feature 'numbers' do
       expect(page).to have_content('one')
     end
 
-     scenario 'the user submits a number from 1 to 9, then the page shows it spelled out' do
+     scenario 'user submits a number from 1 to 9, then the page shows it spelled out' do
       submit_number(9)
       expect(current_path).to eq '/numbers/9'
       expect(page).to have_content('nine')
+    end
+
+    scenario 'user submits a negative number and get an error message' do
+      submit_number(-1)
+      expect(page).to have_content('please submit a positive number')
     end
   end
 end
