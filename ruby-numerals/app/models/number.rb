@@ -32,24 +32,29 @@ class Number
 
   def spell_number number
     return ERROR if !number_is_valid?
-      word = ''
-      if number/10 > 0
-        if number == 10
-          word = 'ten'
-        elsif number > 19
-          decimal = number/10
-          unit = number%10
-          return word = TENS[decimal-1] if unit == 0
-          word2 = spell_number(unit)
-          word = TENS[decimal-1] + '-' + word2
-        else
-          index = number%10
-          word = TEENS[index-1]
-        end
-      elsif number/10 < 1
-        word = ONES[number - 1]
+    word = ''
+    if number/100 > 0
+      hundred = number/100
+      left = number%100
+      return word = ONES[hundred-1] + '-hundred' if left == 0
+      remaining = spell_number(left)
+      word = ONES[hundred-1] + '-hundred-' + remaining
+    elsif number/10 > 0
+      if number == 10
+        word = 'ten'
+      elsif number > 19
+        decimal = number/10
+        unit = number%10
+        return word = TENS[decimal-1] if unit == 0
+        word2 = spell_number(unit)
+        word = TENS[decimal-1] + '-' + word2
+      else
+        index = number%10
+        word = TEENS[index-1]
       end
-
+    elsif number/10 < 1
+      word = ONES[number - 1]
+    end
   end
 
 
