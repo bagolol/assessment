@@ -4,11 +4,12 @@
   "description": "convert integers into words",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "start": "node server.js"
   },
   "author": "rocco",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "jasmine": "^2.3.2"
   }
