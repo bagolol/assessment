@@ -27,11 +27,11 @@ class Number
     words = []
     self.number = number
     error = 'please submit a positive number'
-    if is_valid?
+    if number_is_valid?
       if number < 10
         words << ONES[word_index(number)]
       elsif
-        number > 10 && number < 20
+        number >= 10 && number < 20
         words << TEENS[word_index(number)]
       elsif
         number > 19 && number < 100
@@ -42,6 +42,8 @@ class Number
         else
           words << TENS[first - 1]
         end
+      elsif number >= 100
+
       end
     else
       return error
@@ -55,7 +57,7 @@ class Number
     (number % 10) - 1
   end
 
-  def is_valid?
+  def number_is_valid?
     self.number >= 0
   end
 
