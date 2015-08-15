@@ -14,6 +14,8 @@ class Number
   TENS = %w(ten twenty thirty forty fifty
     sixty seventy eighty ninety)
 
+  ERROR = 'please submit a positive number'
+
   validates :number, :presence => true
 
 
@@ -23,43 +25,33 @@ class Number
     end
   end
 
-  def spell_number
-    words = []
-    self.number = number
-    error = 'please submit a positive number'
-    if number_is_valid?
-      if number < 10
-        words << ONES[word_index(number)]
-      elsif
-        number >= 10 && number < 20
-        words << TEENS[word_index(number)]
-      elsif
-        number > 19 && number < 100
-        first = number / 10
-        second = number % 10
-        if second > 0
-          words << TENS[first - 1] + '-' + ONES[second - 1]
-        else
-          words << TENS[first - 1]
-        end
-      elsif number >= 100
-
-      end
-    else
-      return error
-    end
-    words.join
-  end
-
-
-
-  def word_index number
-    (number % 10) - 1
-  end
-
   def number_is_valid?
     self.number >= 0
   end
+
+
+  def spell_number number
+    return ERROR if !number_is_valid?
+      word = ''
+      if number/10 > 0
+        if number == 10
+          word = 'ten'
+        elsif number > 19
+          decimal = number/10
+          unit = number%10
+          return word = TENS[decimal-1] if unit == 0
+          word2 = spell_number(unit)
+          word = TENS[decimal-1] + '-' + word2
+        else
+          index = number%10
+          word = TEENS[index-1]
+        end
+      elsif number/10 < 1
+        word = ONES[number - 1]
+      end
+
+  end
+
 
 
   def persisted?

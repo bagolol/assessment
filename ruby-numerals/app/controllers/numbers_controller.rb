@@ -13,6 +13,6 @@ class NumbersController < ApplicationController
     value = params[:id].to_i
     info = { :number => value }
     number = Number.new info
-    @letters = number.spell_number
+    @letters = number.spell_number value
   end
 end
