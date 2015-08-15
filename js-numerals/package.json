@@ -9,6 +9,7 @@
   "author": "rocco",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.13.3",
     "jasmine": "^2.3.2"
   }
 }
