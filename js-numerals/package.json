@@ -1,0 +1,14 @@
+{
+  "name": "js-numerals",
+  "version": "1.0.0",
+  "description": "convert integers into words",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "rocco",
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "^2.3.2"
+  }
+}
