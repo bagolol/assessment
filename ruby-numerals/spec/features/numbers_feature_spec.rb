@@ -66,5 +66,13 @@ feature 'numbers' do
       submit_number(155)
       expect(page).to have_content('Your number is "one-hundred-fifty-five"')
     end
+    scenario 'user submits thousands (1110)' do
+      submit_number(1110)
+      expect(page).to have_content('Your number is "one-thousand-one-hundred-ten"')
+    end
+    scenario 'user submits thousands (1001)' do
+      submit_number(1001)
+      expect(page).to have_content('Your number is "one-thousand-one"')
+    end
   end
 end

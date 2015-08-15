@@ -33,12 +33,18 @@ class Number
   def spell_number number
     return ERROR if !number_is_valid?
     word = ''
-    if number/100 > 0
-      hundred = number/100
-      left = number%100
-      return word = ONES[hundred-1] + '-hundred' if left == 0
+    if number/1000 > 0
+      unit = number/1000
+      left = number%1000
+      return word = ONES[unit-1] + '-thousand' if left == 0
       remaining = spell_number(left)
-      word = ONES[hundred-1] + '-hundred-' + remaining
+      word = ONES[unit-1] + '-thousand-' + remaining
+    elsif number/100 > 0
+      unit = number/100
+      left = number%100
+      return word = ONES[unit-1] + '-hundred' if left == 0
+      remaining = spell_number(left)
+      word = ONES[unit-1] + '-hundred-' + remaining
     elsif number/10 > 0
       if number == 10
         word = 'ten'
@@ -56,8 +62,6 @@ class Number
       word = ONES[number - 1]
     end
   end
-
-
 
   def persisted?
     false
