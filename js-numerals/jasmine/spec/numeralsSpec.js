@@ -20,4 +20,14 @@ describe("Speller", function() {
       expect(speller.spellNumber(19)).toEqual("nineteen");
     });
   });
+
+  describe("knows how to spell tens", function(){
+     it("returns 'twenty' when 20 is submitted", function() {
+      expect(speller.spellNumber(20)).toEqual("twenty");
+    });
+    it("returns 'fifty' when 50 is submitted", function() {
+      expect(speller.spellNumber(50)).toEqual("fifty");
+    });
+
+  });
 });
