@@ -24,7 +24,7 @@
     $('.number').on('submit', function(event){
       event.preventDefault();
       var integer = ($('input').val())
-      var spelledNumber = number(integer);
+      var spelledNumber = numberToLetters(integer);
 
       $('.letters').html(spelledNumber);
     });
