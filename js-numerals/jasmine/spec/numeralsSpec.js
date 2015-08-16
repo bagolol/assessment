@@ -37,8 +37,8 @@ describe("Speller", function() {
       expect(speller.spellNumber(52)).toEqual("fifty-two");
     });
   });
-  describe("knows how to spell numbers up until 1000", function(){
-     it("returns 'one hundred seventy-seven' when 77 is submitted", function() {
+  describe("knows how to spell numbers up until 999", function(){
+     it("returns 'one hundred seventy-seven' when 177 is submitted", function() {
       expect(speller.spellNumber(177)).toEqual("one hundred seventy-seven");
     });
     it("returns 'four hundred two' when 402 is submitted", function() {
@@ -46,6 +46,17 @@ describe("Speller", function() {
     });
     it("returns 'one hundred' when 100 is submitted", function() {
       expect(speller.spellNumber(100)).toEqual("one hundred");
+    });
+  });
+  describe("knows how to spell numbers up until 9999", function(){
+     it("returns 'seventeen hundred seventy-seven' when 1777 is submitted", function() {
+      expect(speller.spellNumber(1777)).toEqual("seventeen hundred seventy-seven");
+    });
+    it("returns 'four thousand four hundred two' when 4402 is submitted", function() {
+      expect(speller.spellNumber(4402)).toEqual("four thousand four hundred two");
+    });
+    it("returns 'nine thousand' when 9000 is submitted", function() {
+      expect(speller.spellNumber(9000)).toEqual("nine thousand");
     });
   });
 });

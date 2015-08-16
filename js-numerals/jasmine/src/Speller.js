@@ -32,15 +32,23 @@ function Speller() {
 Speller.prototype.spellNumber = function(integer) {
   if(this.writtenNumbers[integer]) {
     return this.writtenNumbers[integer]
+  } else if (integer/1000 >= 2) {
+    var units = integer%1000;
+    var thousands = (integer-units)/1000;
+    var textStart = this.writtenNumbers[thousands];
+    if(units === 0){
+      return textStart + ' thousand';
+    } else {
+      var textLeft = this.spellNumber(units);
+      return textStart + ' thousand ' + textLeft;
+    }
   } else if (integer/100 >= 1) {
     var units = integer%100;
-    if (units === 0) {
-      var hundreds = (integer-units)/100;
-      var textStart = this.writtenNumbers[hundreds];
+    var hundreds = (integer-units)/100;
+    var textStart = this.writtenNumbers[hundreds];
+    if(units === 0) {
       return textStart + ' hundred'
     } else {
-      var hundreds = (integer-units)/100;
-      var textStart = this.writtenNumbers[hundreds];
       var textLeft = this.spellNumber(units);
       return textStart + ' hundred ' + textLeft;
     }
@@ -50,7 +58,7 @@ Speller.prototype.spellNumber = function(integer) {
     var textStart = this.spellNumber(tens);
     var textLeft = this.spellNumber(units);
     return textStart + '-' + textLeft;
-  }
+  };
 };
 
 
