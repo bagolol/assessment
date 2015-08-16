@@ -24,7 +24,8 @@
     $('.number').on('submit', function(event){
       event.preventDefault();
       var integer = ($('input').val())
-      var spelledNumber = numberToLetters(integer);
+      var speller = new Speller();
+      var spelledNumber = speller.spellNumber(integer);
 
       $('.letters').html(spelledNumber);
     });
@@ -32,6 +33,6 @@
 
   </script>
 
-  <script src="public/js/numerals.js"></script>
+  <script src="jasmine/src/Speller.js"></script>
 </body>
 </html>
