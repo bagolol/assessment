@@ -10,11 +10,27 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
-  <form action="/number" method="post">
+
+
+  <form class="number">
   Insert a number:
   <input type="number" name="quantity">
-  <input type="submit">
   </form>
+  <p class="letters"></p>
+  <script type="text/javascript">
+    $(document).ready( function() {
+
+
+    $('.number').on('submit', function(event){
+      event.preventDefault();
+      var integer = ($('input').val())
+      var spelledNumber = number(integer);
+
+      $('.letters').html(spelledNumber);
+    });
+  });
+
+  </script>
 
   <script src="public/js/numerals.js"></script>
 </body>
