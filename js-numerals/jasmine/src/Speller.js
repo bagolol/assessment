@@ -30,8 +30,29 @@ function Speller() {
                         }
 }
 Speller.prototype.spellNumber = function(integer) {
-  return this.writtenNumbers[integer]
+  if(this.writtenNumbers[integer]) {
+    return this.writtenNumbers[integer]
+  } else if (integer/100 >= 1) {
+    var units = integer%100;
+    if (units === 0) {
+      var hundreds = (integer-units)/100;
+      var textStart = this.writtenNumbers[hundreds];
+      return textStart + ' hundred'
+    } else {
+      var hundreds = (integer-units)/100;
+      var textStart = this.writtenNumbers[hundreds];
+      var textLeft = this.spellNumber(units);
+      return textStart + ' hundred ' + textLeft;
+    }
+  } else {
+    var units = integer%10;
+    var tens = integer - units;
+    var textStart = this.spellNumber(tens);
+    var textLeft = this.spellNumber(units);
+    return textStart + '-' + textLeft;
+  }
 };
+
 
 // module.exports = Speller;
 
