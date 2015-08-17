@@ -31,8 +31,11 @@ function Speller() {
 };
 
 
+var units, tens, textLeft, dividers, firstDigit;
 
 Speller.prototype.spellNumber = function(integer) {
+
+
   if(this.writtenNumbers[integer]) {
     return this.writtenNumbers[integer]
   } else if (integer/1000 >= 2) {
@@ -44,23 +47,24 @@ Speller.prototype.spellNumber = function(integer) {
     return this.writeSentence(integer, 100);
 
   } else {
-    var units = integer%10;
-    var tens = integer - units;
-    var textStart = this.spellNumber(tens);
+    units = integer%10;
+    tens = integer - units;
+    textStart = this.spellNumber(tens);
     return textStart + '-' + this.writtenNumbers[units];
   };
 };
 
 Speller.prototype.writeSentence = function(integer, divider){
-  var dividers = {100: " hundred", 1000: " thousand"};
-  var units = integer%divider;
-  var firstDigit = (integer-units)/divider;
+
+  dividers = {100: " hundred", 1000: " thousand"};
+  units = integer%divider;
+  firstDigit = (integer-units)/divider;
   var textStart = this.writtenNumbers[firstDigit];
   var nameNum = dividers[divider];
   if(units === 0){
     return textStart + nameNum;
   } else {
-    var textLeft = this.spellNumber(units);
+    textLeft = this.spellNumber(units);
     return textStart + nameNum + ' ' + textLeft;
   };
 };
