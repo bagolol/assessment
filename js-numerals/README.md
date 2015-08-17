@@ -29,3 +29,20 @@ That's all.
 Extra points:
 
 * write your code in TDD / BDD, use any test frameworks
+
+Setup
+-----
+
+`````
+- clone repo
+- $ open index.html
+
+`````
+Tests
+-----
+
+`````
+- bower install
+- $ open spec/test.html
+
+`````
