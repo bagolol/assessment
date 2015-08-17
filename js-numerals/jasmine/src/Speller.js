@@ -27,33 +27,22 @@ function Speller() {
                           70: "seventy",
                           80: "eighty",
                           90: "ninety"
-                          100: "hundred"
-                          1000: "thousand"
                         }
-}
+};
+
+
+
 Speller.prototype.spellNumber = function(integer) {
   if(this.writtenNumbers[integer]) {
     return this.writtenNumbers[integer]
   } else if (integer/1000 >= 2) {
-    var units = integer%1000;
-    var thousands = (integer-units)/1000;
-    var textStart = this.writtenNumbers[thousands];
-    if(units === 0){
-      return textStart + ' thousand';
-    } else {
-      var textLeft = this.spellNumber(units);
-      return textStart + ' thousand ' + textLeft;
-    }
+
+    return this.writeSentence(integer, 1000);
+
   } else if (integer/100 >= 1) {
-    var units = integer%100;
-    var hundreds = (integer-units)/100;
-    var textStart = this.writtenNumbers[hundreds];
-    if(units === 0) {
-      return textStart + ' hundred'
-    } else {
-      var textLeft = this.spellNumber(units);
-      return textStart + ' hundred ' + textLeft;
-    }
+
+    return this.writeSentence(integer, 100);
+
   } else {
     var units = integer%10;
     var tens = integer - units;
@@ -63,18 +52,18 @@ Speller.prototype.spellNumber = function(integer) {
 };
 
 Speller.prototype.writeSentence = function(integer, divider){
+  var dividers = {100: " hundred", 1000: " thousand"};
   var units = integer%divider;
-  var clean = integer-units;
   var firstDigit = (integer-units)/divider;
   var textStart = this.writtenNumbers[firstDigit];
-  var nameNum = this.writtenNumbers[clean];
+  var nameNum = dividers[divider];
   if(units === 0){
-    return textStart + ' ' + nameNum;
+    return textStart + nameNum;
   } else {
     var textLeft = this.spellNumber(units);
-    return textStart + ' ' + nameNum + ' ' + textLeft;
-  }
-}
+    return textStart + nameNum + ' ' + textLeft;
+  };
+};
 
 
 
