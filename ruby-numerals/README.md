@@ -24,6 +24,24 @@ For example:
 1999 == nineteen hundred and ninety-nine
 </pre>
 
+
 That's all.
 
 Extra points: write your code in TDD / BDD, use cucumber, rspec, or other test frameworks
+
+Setup
+-----
+
+`````
+- clone repo
+- $ rails s
+- http://localhost:3000/numbers
+
+`````
+to run the tests
+
+
+`````
+- $ rspec
+
+`````
