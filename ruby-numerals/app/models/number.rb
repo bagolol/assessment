@@ -28,29 +28,19 @@ class Number
 
   def spell_number(number)
     return ERROR unless number_is_valid?
-    word = ''
     if number / 1000 > 0
-      unit = number / 1000
-      left = number % 1000
-      return word = ONES[unit - 1] + '-thousand' if left == 0
-      remaining = spell_number(left)
-      word = ONES[unit - 1] + '-thousand-' + remaining
+      compose_word(number, 1000)
     elsif number / 100 > 0
-      unit = number / 100
-      left = number % 100
-      return word = ONES[unit - 1] + '-hundred' if left == 0
-      remaining = spell_number(left)
-      word = ONES[unit - 1] + '-hundred-' + remaining
+     compose_word(number, 100)
     elsif number / 10 > 0
-      if number == 10
-        word = 'ten'
-      elsif number > 19
+      if number > 19
         decimal = number / 10
         unit = number % 10
         return word = TENS[decimal - 1] if unit == 0
         word2 = spell_number(unit)
         word = TENS[decimal - 1] + '-' + word2
       else
+        return "ten" if number == 10
         index = number % 10
         word = TEENS[index - 1]
       end
@@ -58,6 +48,18 @@ class Number
       word = ONES[number - 1]
     end
   end
+
+  def compose_word (number, divisor)
+    overs = {100 => " hundred",
+             1000 => " thousand"}
+    unit = number / divisor
+    left = number % divisor
+    identifier = overs[divisor]
+    return word = ONES[unit - 1] + identifier if left == 0
+    remaining = spell_number(left)
+    word = ONES[unit - 1] + identifier + ' ' + remaining
+  end
+
 
   def persisted?
     false
