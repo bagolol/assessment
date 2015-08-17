@@ -27,6 +27,8 @@ function Speller() {
                           70: "seventy",
                           80: "eighty",
                           90: "ninety"
+                          100: "hundred"
+                          1000: "thousand"
                         }
 }
 Speller.prototype.spellNumber = function(integer) {
@@ -56,11 +58,23 @@ Speller.prototype.spellNumber = function(integer) {
     var units = integer%10;
     var tens = integer - units;
     var textStart = this.spellNumber(tens);
-    var textLeft = this.spellNumber(units);
-    return textStart + '-' + textLeft;
+    return textStart + '-' + this.writtenNumbers[units];
   };
 };
 
+Speller.prototype.writeSentence = function(integer, divider){
+  var units = integer%divider;
+  var clean = integer-units;
+  var firstDigit = (integer-units)/divider;
+  var textStart = this.writtenNumbers[firstDigit];
+  var nameNum = this.writtenNumbers[clean];
+  if(units === 0){
+    return textStart + ' ' + nameNum;
+  } else {
+    var textLeft = this.spellNumber(units);
+    return textStart + ' ' + nameNum + ' ' + textLeft;
+  }
+}
 
-// module.exports = Speller;
+
 
