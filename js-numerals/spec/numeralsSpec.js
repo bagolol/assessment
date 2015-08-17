@@ -57,5 +57,8 @@ describe("Speller", function() {
         it("returns 'nine thousand' when 9000 is submitted", function() {
             expect(speller.spellNumber(9000)).toEqual("nine thousand");
         });
+        it("returns 'nine thousand nine hundred ninety-nine' when 9999 is submitted", function() {
+            expect(speller.spellNumber(9999)).toEqual("nine thousand nine hundred ninety-nine");
+        });
     });
 });
