@@ -34,12 +34,13 @@ Setup
 
 `````
 - clone repo
+- $ bundle install
 - $ rails s
 - http://localhost:3000/numbers
 
 `````
-to run the tests
-
+Test
+-----
 
 `````
 - $ rspec

@@ -42,7 +42,7 @@ Tests
 -----
 
 `````
-- bower install
+- $ bower install
 - $ open spec/test.html
 
 `````
