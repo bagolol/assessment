@@ -31,7 +31,7 @@ function Speller() {
 };
 
 
-var units, tens, textLeft, dividers, firstDigit;
+var units, tens, textLeft, firstDigit;
 
 Speller.prototype.spellNumber = function(integer) {
 
@@ -53,14 +53,14 @@ Speller.prototype.spellNumber = function(integer) {
     };
 };
 
-Speller.prototype.writeSentence = function(integer, divider) {
+Speller.prototype.writeSentence = function(integer, divisor) {
 
     this.writtenNumbers[100] = " hundred"
     this.writtenNumbers[1000] = " thousand"
-    units = integer % divider;
-    firstDigit = (integer - units) / divider;
+    units = integer % divisor;
+    firstDigit = (integer - units) / divisor;
     var textStart = this.writtenNumbers[firstDigit];
-    var nameNum = this.writtenNumbers[divider];
+    var nameNum = this.writtenNumbers[divisor];
     if (units === 0) {
         return textStart + nameNum;
     } else {
