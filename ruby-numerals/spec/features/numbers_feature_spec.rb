@@ -33,9 +33,9 @@ feature 'numbers' do
     end
 
     scenario 'user submits 1 and the page shows "one"' do
-      submit_number(9)
-      expect(current_path).to eq '/numbers/9'
-      expect(page).to have_content('nine')
+      submit_number(1)
+      expect(current_path).to eq '/numbers/1'
+      expect(page).to have_content('Your number is one')
     end
   end
 
@@ -55,15 +55,15 @@ feature 'numbers' do
   context 'submitting numbers from 20 to 100' do
     scenario 'user submits 55 and the page shows "fifty-five"' do
       submit_number(55)
-      expect(page).to have_content('fifty-five')
+      expect(page).to have_content('Your number is fifty-five')
     end
     scenario 'users submits tens(30)' do
       submit_number(30)
-      expect(page).to have_content('Your number is "thirty"')
+      expect(page).to have_content('Your number is thirty')
     end
     scenario 'users submits tens(90)' do
       submit_number(90)
-      expect(page).to have_content('Your number is "ninety"')
+      expect(page).to have_content('Your number is ninety')
     end
   end
 
@@ -71,26 +71,26 @@ feature 'numbers' do
   context 'submitting numbers from 100 to 999' do
     scenario 'user submits 110 and page shows "one hundred ten"' do
       submit_number(110)
-      expect(page).to have_content('Your number is "one hundred ten"')
+      expect(page).to have_content('Your number is one hundred ten')
     end
     scenario 'user submits 400 and page shows "four hundred"' do
       submit_number(400)
-      expect(page).to have_content('Your number is "four hundred"')
+      expect(page).to have_content('Your number is four hundred')
     end
     scenario 'user submits 955 and page shows "nine hundred fifty-five"' do
       submit_number(955)
-      expect(page).to have_content('Your number is "nine hundred fifty-five"')
+      expect(page).to have_content('Your number is nine hundred fifty-five')
     end
   end
 
   context 'submitting numbers from 1000 to 9999' do
     scenario 'user submits 1110 and page shows "one thousand one hundred"' do
       submit_number(1001)
-      expect(page).to have_content('Your number is "one thousand one"')
+      expect(page).to have_content('Your number is one thousand one')
     end
     scenario 'user submits 9534 and the page shows "nine thousand five hundred thirty-four" ' do
       submit_number(9534)
-      expect(page).to have_content('Your number is "nine thousand five hundred thirty-four"')
+      expect(page).to have_content('Your number is nine thousand five hundred thirty-four')
     end
   end
 end
